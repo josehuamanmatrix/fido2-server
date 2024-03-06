@@ -35,7 +35,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
       attestation: "none",
       cryptoParams: [-7, -257],
       authenticatorAttachment: "platform",
-      authenticatorRequireResidentKey: false,
+      authenticatorRequireResidentKey: true,
       authenticatorUserVerification: "required",
     });
   }

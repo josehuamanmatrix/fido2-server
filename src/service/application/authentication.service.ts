@@ -90,7 +90,6 @@ export class AuthenticationService {
 
   async createAuthChallenge(userId: string): Promise<CreateAuthChallenge> {
     const keyAuthOptions = await this.passkeyClient.createAuthChallenge();
-    const challengeToken = this.jwtService.sign({ challenge: keyAuthOptions.challenge, base64UserId: userId });
 
     const user = await this.userRepository.getUser(userId);
 
@@ -98,6 +97,11 @@ export class AuthenticationService {
       id: authenticator.credential,
       type: "public-key",
     }));
+
+    const challengeToken = this.jwtService.sign({
+      challenge: keyAuthOptions.challenge,
+      base64UserId: Buffer.from(userId).toString("base64"),
+    });
 
     return {
       challengeToken,
