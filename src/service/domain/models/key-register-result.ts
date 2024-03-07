@@ -1,5 +1,5 @@
 export type KeyRegisterResult = {
   counter: number;
-  credentials: string;
+  credentialId: string;
   publicKey: string;
 };

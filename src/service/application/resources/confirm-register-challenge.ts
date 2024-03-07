@@ -1,5 +1,5 @@
 export type ConfirmRegisterChallenge = {
   counter: number;
-  credentials: string;
+  credentialId: string;
   publicKey: string;
 };

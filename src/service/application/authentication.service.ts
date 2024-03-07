@@ -73,7 +73,7 @@ export class AuthenticationService {
     user.authenticators.push({
       publicKey: keyRegisterResult.publicKey,
       counter: keyRegisterResult.counter,
-      credential: keyRegisterResult.credentials,
+      credentialId: keyRegisterResult.credentialId,
     });
 
     await this.userRepository.updateUser(userId, {
@@ -84,7 +84,7 @@ export class AuthenticationService {
     return {
       publicKey: keyRegisterResult.publicKey,
       counter: keyRegisterResult.counter,
-      credentials: keyRegisterResult.credentials,
+      credentialId: keyRegisterResult.credentialId,
     };
   }
 
@@ -94,7 +94,7 @@ export class AuthenticationService {
     const user = await this.userRepository.getUser(userId);
 
     const allowCredentials = user.authenticators.map((authenticator) => ({
-      id: authenticator.credential,
+      id: authenticator.credentialId,
       type: "public-key",
     }));
 
@@ -122,7 +122,7 @@ export class AuthenticationService {
     const user = await this.userRepository.getUser(userId);
 
     const authenticator = user.authenticators.find(
-      (authenticator) => authenticator.credential === keyAuthConfirm.rawId,
+      (authenticator) => authenticator.credentialId === keyAuthConfirm.rawId,
     );
 
     await this.passkeyClient.confirmAuthChallenge(challenge, keyAuthConfirm, authenticator);

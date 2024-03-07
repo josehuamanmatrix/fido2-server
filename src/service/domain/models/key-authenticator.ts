@@ -1,5 +1,5 @@
 export type KeyAuthenticator = {
   counter: number;
-  credential: string;
+  credentialId: string;
   publicKey: string;
 };

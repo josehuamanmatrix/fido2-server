@@ -58,11 +58,12 @@ export class Fido2PasskeyClient implements PasskeyClient {
       },
       {
         challenge: challenge,
+        rpId: this.rpId,
         origin: this.keyConfig.origin,
         factor: this.keyConfig.factor,
         publicKey: keyAuthenticator.publicKey,
         prevCounter: keyAuthenticator.counter,
-        userHandle: keyAuthenticator.credential,
+        userHandle: keyAuthenticator.credentialId,
       },
     );
 
@@ -104,7 +105,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
 
     return {
       counter: Number.parseInt(authnrData.get("counter")),
-      credentials: credId,
+      credentialId: credId,
       publicKey: authnrData.get("credentialPublicKeyPem"),
     };
   }
