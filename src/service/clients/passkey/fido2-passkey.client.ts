@@ -58,11 +58,12 @@ export class Fido2PasskeyClient implements PasskeyClient {
       },
       {
         challenge: challenge,
+        rpId: this.rpId,
         origin: this.keyConfig.origin,
         factor: this.keyConfig.factor,
         publicKey: keyAuthenticator.publicKey,
         prevCounter: keyAuthenticator.counter,
-        userHandle: keyAuthenticator.credential,
+        userHandle: keyAuthenticator.credentialId,
       },
     );
 
@@ -74,7 +75,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
     return {
       ...authOptions,
       rawChallenge: encode(authOptions.rawChallenge),
-      challenge: encode(authOptions.challenge),
+      challenge: Buffer.from(encode(authOptions.challenge)).toString("base64"),
       allowCredentials: [],
     };
   }
@@ -104,7 +105,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
 
     return {
       counter: Number.parseInt(authnrData.get("counter")),
-      credentials: credId,
+      credentialId: credId,
       publicKey: authnrData.get("credentialPublicKeyPem"),
     };
   }
@@ -120,7 +121,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
         name: base64Username,
         displayName: base64Username,
       },
-      challenge: encode(registrationOptions.challenge),
+      challenge: Buffer.from(encode(registrationOptions.challenge)).toString("base64"),
     };
   }
 }

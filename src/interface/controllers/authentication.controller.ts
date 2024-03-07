@@ -7,6 +7,7 @@ import { RegisterRequest } from "./resources/request/register.request";
 
 import { CreateAuthChallengeRequest } from "./resources/request/create-auth-challenge.request";
 import { ConfirmRegisterChallengeRequest } from "./resources/request/confirm-register-challenge.request";
+import { ConfirmAuthChallenge } from "./resources/request/confirm-auth-challenge.request";
 
 @Controller("auth")
 export class AuthenticationController {
@@ -60,14 +61,3 @@ export class AuthenticationController {
   }
 }
 
-type ConfirmAuthChallenge = {
-  id: string;
-  rawId: string;
-  challengeToken: string;
-  response: {
-    clientDataJSON: string;
-    authenticatorData: string;
-    signature: string;
-    userHandle?: string;
-  };
-};
