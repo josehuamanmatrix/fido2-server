@@ -10,6 +10,7 @@ export interface PasskeyClient {
   confirmRegisterChallenge(challenge: string, keyRegisterConfirm: KeyRegisterConfirm): Promise<KeyRegisterResult>;
   createAuthChallenge(): Promise<KeyAuthChallenge>;
   confirmAuthChallenge(
+    userId: string,
     challenge: string,
     keyAuthConfirm: KeyAuthConfirm,
     keyAuthenticator: KeyAuthenticator,

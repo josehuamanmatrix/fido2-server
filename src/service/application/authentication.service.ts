@@ -125,7 +125,7 @@ export class AuthenticationService {
       (authenticator) => authenticator.credentialId === keyAuthConfirm.rawId,
     );
 
-    await this.passkeyClient.confirmAuthChallenge(challenge, keyAuthConfirm, authenticator);
+    await this.passkeyClient.confirmAuthChallenge(base64UserId, challenge, keyAuthConfirm, authenticator);
   }
 
   register(createUserInput: CreateUserInput) {

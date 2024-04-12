@@ -41,6 +41,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
   }
 
   async confirmAuthChallenge(
+    userId: string,
     challenge: string,
     keyAuthConfirm: KeyAuthConfirm,
     keyAuthenticator: KeyAuthenticator,
@@ -63,7 +64,7 @@ export class Fido2PasskeyClient implements PasskeyClient {
         factor: this.keyConfig.factor,
         publicKey: keyAuthenticator.publicKey,
         prevCounter: keyAuthenticator.counter,
-        userHandle: keyAuthenticator.credentialId,
+        userHandle: userId,
       },
     );
 
