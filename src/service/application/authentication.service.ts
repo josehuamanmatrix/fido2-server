@@ -37,12 +37,6 @@ export class AuthenticationService {
       base64UserId: registerChallenge.user.id,
     });
 
-    await this.userRepository.updateUser(user.userId, {
-      userId: user.userId,
-      username: user.username,
-      authenticators: user.authenticators,
-    });
-
     return {
       challengeToken,
       user: {
